@@ -1,1 +1,1 @@
-# Weather-App
+I created a weather app using HTML, CSS, and JavaScript, which integrates with a weather API to provide real-time information. With this app, you can check the temperature and the day of the week for any city you search for. The interface is user-friendly and displays accurate weather details, making it easy to stay updated on the current conditions in your selected location.
