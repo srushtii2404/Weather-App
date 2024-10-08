@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wheater Api</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        body {
+            background-color: skyblue;
+        }
+
+        .box {
+            height: 400px;
+            width: 350px;
+            margin: auto;
+            text-align: center;
+            box-shadow: 3px 3px 20px 2px rgb(109, 109, 109);
+            border-radius: 6px;
+            margin-top: 70px;
+            background-color: white;
+        }
+
+        .search input {
+            padding: 7px;
+            margin-top: 25px;
+            width: 200px;
+            border: inset;
+            border-radius: 3px;
+        }
+
+        .show {
+            margin-top: 50px;
+        }
+
+        .show .icon {
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <div class="search">
+            <input type="text" id="cityInput" placeholder="Enter The City...">
+            <button onclick="getWeather()"
+                style="background-color: skyblue;border: none;border-radius: 5px; padding: 10px;">Get Weather</button>
+        </div>
+
+        <div class="show">
+            <div class="icon" id="weatherIcon">🌥️</div>
+            <h2 id="day">Day</h2>
+            <h2 id="temperature">Deg°</h2>
+        </div>
+    </div>
+
+    <script>
+        function getWeather() {
+            const city = document.getElementById('cityInput').value;
+
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=0d00ff8f368c3ff5004cb712c275ab6f`)
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data);
+                    const weatherIcon = document.getElementById('weatherIcon');
+                    const day = document.getElementById('day');
+                    const temperature = document.getElementById('temperature');
+                    day.innerHTML = new Date().toLocaleDateString('en-US', { weekday: 'long' });
+                    temperature.innerHTML = `${Math.round(data.main.temp - 273.15)}°C`;
+                })
+
+        }
+
+
+    </script>
+</body>
+
+</html>
